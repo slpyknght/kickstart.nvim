@@ -67,7 +67,10 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+  -- vim.o.clipboard = 'unnamedplus'
+  -- https://www.reddit.com/r/neovim/comments/17ieyn2/comment/kd9vt97/?utm_source=share&utm_medium=web2x&context=3
+  -- using autocmd to sync clipboard on focus/blur
+  vim.o.clipboard = ''
 end)
 
 -- Enable break indent
@@ -562,6 +565,18 @@ require('lazy').setup({
                 vim.lsp.buf.clear_references()
                 vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
               end,
+            })
+
+            -- sync with system clipboard on focus
+            vim.api.nvim_create_autocmd({ 'FocusGained' }, {
+              pattern = { '*' },
+              command = [[call setreg("@", getreg("+"))]],
+            })
+
+            -- sync with system clipboard on focus
+            vim.api.nvim_create_autocmd({ 'FocusLost' }, {
+              pattern = { '*' },
+              command = [[call setreg("+", getreg("@"))]],
             })
           end
 
