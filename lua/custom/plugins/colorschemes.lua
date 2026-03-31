@@ -20,10 +20,10 @@ return {
         specs = {
           carbonfox = {
             syntax = {
-              keyword = '#cc714e',
+              -- keyword = '#cc714e',
               preproc = '#cc9955',
               string = '#ECE1CB',
-              types = '#eb7900',
+              -- types = '#eb7900',
             },
           },
         },

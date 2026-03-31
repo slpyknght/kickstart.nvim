@@ -9,7 +9,7 @@ vim.opt.shiftwidth = 4
 vim.opt.wrap = false
 vim.opt.expandtab = false
 vim.opt.relativenumber = true
-vim.opt_local.conceallevel = 1
+vim.opt.conceallevel = 1
 vim.opt.cursorline = true
 vim.opt.colorcolumn = '80'
 
